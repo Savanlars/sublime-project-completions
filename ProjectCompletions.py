@@ -2,7 +2,7 @@ import sublime_plugin
 
 def all_match(view, locs, selector):
     for loc in locs:
-        if not view.score_selector(loc, selector):
+        if selector != view.scope_name(loc).rstrip():
             return False
     return True
 
