@@ -6,7 +6,6 @@ def all_match(view, locs, selector):
             return False
     return True
 
-
 class ProjectCompletions(sublime_plugin.EventListener):
 
     def on_query_completions(self, view, prefix, locations):
@@ -14,11 +13,19 @@ class ProjectCompletions(sublime_plugin.EventListener):
             completions = view.window().project_data().get("completions")
             if isinstance(completions, list):
                 return completions
+
             elif isinstance(completions, dict):
                 result = []
                 for selector in completions:
                     if all_match(view, locations, selector):
-                        result += completions[selector]
-                        print(selector)
+
+                        parse_completions = []
+                        for item in completions[selector]:
+                            if len(item) > 1:
+                                item = [item[0], ''.join(item[1:])]
+                                parse_completions += [item]
+
+                        result += parse_completions
+
                 return result
         return None
