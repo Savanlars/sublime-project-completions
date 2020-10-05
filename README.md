@@ -2,9 +2,15 @@
 
 This plugin lets you add project-specific completion snippets to your `.sublime-project` files.
 
-Install the plugin via [Package Control][] and you can add project-specific completions via the `completions` key in your `.sublime-project` file.
+### Install the plugin:
 
-Completions can be specified in two formats. 
+  1. [Download the latest version](https://github.com/Savanlars/sublime-project-completions/archive/master.zip)
+  2. Unzip and rename the folder to ProjectCompletions
+  3. Move the folder into your Packages directory.
+
+and you can add project-specific completions via the `completions` key in your `.sublime-project` file.
+
+Completions can be specified in two formats.
 
 ### Simple list
 
@@ -16,7 +22,10 @@ Just a list of `[trigger, completion]` items:
     "completions": [
         [trigger, completion],
         ...
-        [trigger, completion]
+        [trigger,
+        completion_part1,
+        completion_part2,
+        completion_part3]
     ]
 }
 ```
@@ -36,13 +45,19 @@ A dictionary with scopes as keys and lists of completions as values:
         selector: [
             [trigger, completion],
             ...
-            [trigger, completion]
+            [trigger,
+            completion_part1,
+            completion_part2,
+            completion_part3]
         ],
         ...
         selector: [
             [trigger, completion],
             ...
-            [trigger, completion]
+            [trigger,
+            completion_part1,
+            completion_part2,
+            completion_part3]
         ]
 }
 ```
@@ -53,10 +68,15 @@ For more info about scope selectors see the [Unofficial Documentation][selectors
 ### Example
 ```
 {
-  "folders": ...
-  "completions":[
-      ["I", "I am a ${1:snippet} baby!"]
-  ]
+    "folders": ...
+    "completions":[
+        ["I", "I am a ${1:snippet} baby!"],
+        [
+            "func\tFunctiom",
+            "def function():\n",
+            "\t${1:pass}\n"
+        ]
+    ]
 }
 ```
 
@@ -69,6 +89,5 @@ To see the example in action type I and then press tab:
 
 Thanks to [Amina](http://superuser.com/users/185370/amina) for [inspiring](http://superuser.com/q/965658/496621) this plugin.
 
-[Package Control]: https://sublime.wbond.net/
 [docs]: https://sublime-text-unofficial-documentation.readthedocs.org/en/latest/reference/api.html#sublime_plugin.EventListener.on_query_completions
 [selectors]: https://sublime-text-unofficial-documentation.readthedocs.org/en/latest/extensibility/syntaxdefs.html#scopes-and-scope-selectors
